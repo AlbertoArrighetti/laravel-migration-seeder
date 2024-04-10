@@ -3,35 +3,46 @@
 namespace Database\Seeders;
 
 use App\Models\Train;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Date;
+
+use Faker\Generator as Faker;
 
 class TrainSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
-        $newTrain = new Train();
 
-        $newTrain->agency = 'treno';
+        for($i = 0; $i < 50; $i++) {
 
-        $newTrain->departure_station = 'Sesto';
-        $newTrain->arrival_station = 'Firenze';
+            $newTrain = new Train();
 
-        $newTrain->departure_time = '2024-12-10';
-        $newTrain->arrival_time = '2024-03-03';
+            $newTrain->agency = $faker->company();
+            $newTrain->departure_station = $faker->city();
+            $newTrain->arrival_station = $faker->city();
 
-        $newTrain->train_code = 21223;
+            $newTrain->departure_time = $faker->dateTimeBetween('-1 day', '+1 day');
+            $newTrain->arrival_time = $faker->dateTimeBetween('+1 day', '+2 day');
 
-        $newTrain->carriages = 8;
+            $newTrain->train_code = $faker->randomNumber(4, true);
+            $newTrain->carriages = $faker->numberBetween(5, 9);
+            
+            $newTrain->cancel = $faker->boolean();
 
-        $newTrain->delay = false;
-        $newTrain->cancel = true;
+            if ($newTrain->cancel) {
+                $newTrain->delay = false;
+            }else {
+                $newTrain->delay = $faker->boolean();
+            }
+
+            $newTrain->save();
+        }
 
 
-        $newTrain->save();
     }
 }
