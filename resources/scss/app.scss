@@ -1,1 +1,21 @@
+@use './partials/variables' as *;
 @import "~bootstrap/scss/bootstrap";
+
+
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+        color: $primary;
+    }
+}
+.card-body {
+    .train_code, .delay {
+        span {
+            font-weight: bold;
+            color: $primary;
+        }
+    }
+}
