@@ -3,10 +3,10 @@
 @section('content')
 <ol>
     @foreach ($trains as $train)
-    @if ($train->departure_time == '2024-04-10')
+    @if ($train->departure_time == $today)
 
         <li>
-            {{$train->departure_time}}
+            {{$train->agency}}
         </li>
         
     @endif

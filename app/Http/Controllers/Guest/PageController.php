@@ -12,7 +12,7 @@ class PageController extends Controller
     public function index() {
         $trains = Train::all();
 
-        $today = Date::today();
+        $today = now()->toDateString();
 
         return view('home', compact('trains', 'today'));
     }
