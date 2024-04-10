@@ -1,15 +1,15 @@
 @extends('layouts/app')
 
 @section('content')
+<ol>
     @foreach ($trains as $train)
-    @if ($train->departure_time = $today)
+    @if ($train->departure_time == '2024-04-10')
 
-    <ul>
         <li>
             {{$train->departure_time}}
         </li>
-    </ul>
-            
+        
     @endif
     @endforeach
+</ol>
 @endsection
